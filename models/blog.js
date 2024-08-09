@@ -1,4 +1,4 @@
-//require('dotenv').config() //??ehk
+//require('dotenv').config() //?ehk
 const mongoose = require('mongoose')
 
 //tästä
