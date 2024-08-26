@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Paras kirja",
-    "author": "Meikä Mandoliini",
+    "title": "Elämä",
+    "author": "Juice Leskinen",
     "url": "www.osote.fi",
-    "likes": "6"
+    "likes": "666"
 }
