@@ -71,7 +71,7 @@ test('a blog can be added with HTTP-post', async () => {
     await api
         .post('/api/blogs')
         .send(addingNewBlog)
-        .expect(200)
+        .expect(201)
         .expect('Content-Type', /application\/json/)
 
     const response = await api.get('/api/blogs')
