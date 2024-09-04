@@ -1,4 +1,5 @@
 const { test, after, beforeEach } = require('node:test')
+const assert = require('node:assert')
 const Blog = require('../models/blog')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
@@ -37,6 +38,12 @@ test('blogs are returned as json', async () => {
         .get('/api/blogs')
         .expect(200)
         .expect('Content-Type', /application\/json/)
+})
+
+test('returns right amount of blogs', async () => {
+    const response = await api.get('/api/blogs')
+
+    assert.strictEqual(response.body.length, 2)
 })
 
 after(async () => {
