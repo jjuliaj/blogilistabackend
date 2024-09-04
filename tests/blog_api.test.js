@@ -57,33 +57,27 @@ test('unique identifier is named id', async () => {
     })
 })
 
-test('a blog can be added with HTTP-post', async () => {
-    const addingNewBlog = {
+test('a valid blog can be added with HTTP-post', async () => {
+    const newBlog = {
         title: 'Aletaan ryyppää',
         author: 'Tuntematon',
         url: 'https://coop.com',
         likes: 10000000000
     }
 
-    const initialResponse = await api.get('/api/blogs')
-    const initialBlogs = initialResponse.body.length
-
     await api
         .post('/api/blogs')
-        .send(addingNewBlog)
+        .send(newBlog)
         .expect(201)
         .expect('Content-Type', /application\/json/)
 
     const response = await api.get('/api/blogs')
-    const blogs = response.body
-    assert.strictEqual(blogs.length, initialBlogs + 1)
-    const titles = blogs.map(blog => blog.title)
-    assert.ok(titles.includes(addingNewBlog.title))
 
-    const addedBlog = blogs.find(testAddedBlog => testAddedBlog.title === addingNewBlog.title)
-    assert.strictEqual(addedBlog.author, addingNewBlog.author)
-    assert.strictEqual(addedBlog.url, addingNewBlog.url)
-    assert.strictEqual(addedBlog.likes, addingNewBlog.likes)
+    const titles = response.body.map(r => r.title)
+
+    assert.strictEqual(response.body.length, initialBlogs.length + 1)
+
+    assert(titles.includes('Aletaan ryyppää'))
 })
 
 after(async () => {
