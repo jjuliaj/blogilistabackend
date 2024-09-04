@@ -8,6 +8,10 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 
+//const app = require('../app')
+//const supertest = require('supertest')
+//const api = supertest(app)
+
 mongoose.set('strictQuery', false)
 
 logger.info('connecting to', config.MONGODB_URI)
